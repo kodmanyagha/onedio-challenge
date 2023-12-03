@@ -10,7 +10,7 @@ export default function Get(props: GetProps): MethodDecorator {
       ">> GET inline function params:",
       target,
       propertyKey,
-      descriptor
+      descriptor.value
     );
   };
 }
