@@ -1,12 +1,14 @@
+import logger from "../../utils/logger";
+
 export type PostProps = {
   path: string;
 };
 
 export default function Post(props: PostProps): MethodDecorator {
-  console.log(">> POST props", props);
+  logger.log(">> POST props", props);
 
   return (target, propertyKey, descriptor) => {
-    console.log("POST inline function");
-    console.log(target, propertyKey, descriptor);
+    logger.log("POST inline function");
+    logger.log(target, propertyKey, descriptor);
   };
 }

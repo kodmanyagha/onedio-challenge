@@ -1,4 +1,4 @@
-import Controller from "../../../system/decorators/route/controler";
+import Controller from "../../../system/decorators/route/controller";
 import Get from "../../../system/decorators/route/get";
 
 @Controller({ path: "" })

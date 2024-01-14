@@ -1,5 +1,6 @@
-import Controller from "../../../system/decorators/route/controler";
+import Controller from "../../../system/decorators/route/controller";
 import Get from "../../../system/decorators/route/get";
+import logger from "../../../system/utils/logger";
 
 @Controller({ path: "about" })
 export default class AboutUsController {
@@ -19,9 +20,11 @@ export default class AboutUsController {
    */
   @Get({ path: "contact" })
   public contact() {
+    logger.info("AboutUs::contact() method invoked.");
+
     return {
-      foo: "foo",
-      bar: "bar",
+      page: "about/contact",
+      hello: "world",
     };
   }
 }

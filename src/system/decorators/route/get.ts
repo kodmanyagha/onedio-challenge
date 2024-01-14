@@ -1,12 +1,14 @@
+import logger from "../../utils/logger";
+
 export type GetProps = {
   path: string;
 };
 
 export default function Get(props: GetProps): MethodDecorator {
-  console.log(">> GET props", props);
+  logger.log(">> GET props", props);
 
   return (target, propertyKey, descriptor) => {
-    console.log(
+    logger.log(
       ">> GET inline function params:",
       target,
       propertyKey,

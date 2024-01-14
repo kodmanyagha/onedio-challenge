@@ -35,6 +35,7 @@ RUN apk add supervisor
 
 RUN npm install -g npm
 RUN npm install -g yarn
+RUN npm install -g typescript ts-node
 
 # When you done clear apk cache.
 RUN rm -f /var/cache/apk/*

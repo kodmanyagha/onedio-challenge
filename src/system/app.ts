@@ -3,35 +3,20 @@ import { Mongoose, connect } from "mongoose";
 import controllers from "../config/controllers";
 import DiContainer from "./di/di-container";
 import DiContainerInterface from "./di/di-container-interface";
-import winston from "winston";
+import logger from "./utils/logger";
 
 export default class App {
   private diContainer: DiContainerInterface;
   private controllers: any[];
   private server: express.Application;
   private db?: Mongoose = undefined;
-  private logger: winston.Logger;
 
   constructor() {
-    this.logger = winston.createLogger({
-      level: "info",
-      format: winston.format.json(),
-      defaultMeta: { service: "user-service" },
-      transports: [
-        //
-        // - Write all logs with importance level of `error` or less to `error.log`
-        // - Write all logs with importance level of `info` or less to `combined.log`
-        //
-        new winston.transports.File({ filename: "error.log", level: "error" }),
-        new winston.transports.File({ filename: "combined.log" }),
-      ],
-    });
-
     this.diContainer = new DiContainer();
     this.controllers = controllers;
 
     // TODO Use winstonlog or similar library here.
-    console.log(">> this.controllers", this.controllers);
+    logger.info(">> this.controllers", this.controllers);
 
     this.server = express();
   }
@@ -50,7 +35,7 @@ export default class App {
         process.env.DB_DATABASE
     );
 
-    console.log(">> DB connection:", this.db);
+    logger.log(">> DB connection:", this.db);
   }
 
   protected async startServer() {
@@ -65,7 +50,7 @@ export default class App {
     });
 
     this.server.listen(port, () => {
-      console.log(`Server running at http://localhost:${port}`);
+      logger.info(`Server running at http://localhost:${port}`);
     });
   }
 
